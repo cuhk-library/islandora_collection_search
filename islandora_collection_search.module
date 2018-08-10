@@ -114,6 +114,8 @@ function islandora_collection_search_form_islandora_solr_advanced_search_form_al
     $collections = islandora_collection_search_retrieve_searchable_collections($default_options, FALSE);
     $form['collections'] = array(
       '#type' => 'select',
+      '#title' => t('Select Collection'),
+      '#title_display' => 'invisible',
       '#options' => $collections,
       '#weight' => 5,
     );
