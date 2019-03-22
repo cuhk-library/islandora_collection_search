@@ -28,11 +28,12 @@ function islandora_collection_search_form($form, &$form_state) {
   );
 
   $collection = islandora_collection_search_get_collection_pid();
+  $display_current_collection = variable_get('islandora_collection_search_display_current_collection',FALSE);
   $options = array(
     'all' => t('All collections'),
   );
   $default_search = 'all';
-  if ($collection) {
+  if ($collection && $display_current_collection) {
     // See if the current object has children, and if so make it available for
     // searching otherwise get its parent.
     $qp = new IslandoraSolrQueryProcessor();
@@ -83,7 +84,7 @@ function islandora_collection_search_form($form, &$form_state) {
   }
   $default_search_value = '';
   // Check if we're on a search results page.
-  if (variable_get('islandora_collection_search_retain_search_values', FALSE) && strpos(current_path(), 'islandora/search') === 0) {
+ if (variable_get('islandora_collection_search_retain_search_values', FALSE) && strpos(current_path(), 'islandora/search') === 0) {
     if (isset($_GET['cp'])) {
       $default_search = $_GET['cp'];
     }
