@@ -50,13 +50,12 @@ function islandora_collection_search_islandora_solr_query($islandora_solr_query)
   $filter = format_string('!field:"!value"', array(
     '!field' => $ancestor_field,
     '!value' => $collection_pid,
-  ))
+  ));
   $filter2 = format_string('!field:"!value"', array(
     '!field' => 'ancestors_ms',
     '!value' => $collection_pid,
   ));
   $islandora_solr_query->solrParams['fq'][] = '(' . $filter . ' OR ' . $filter2 . ')';
-  $islandora_solr_query->solrParams['fq'][] = $filter;
 }
 
 /**
